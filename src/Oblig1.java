@@ -1,4 +1,5 @@
-public class Oppgave1 {
+public class Oblig1 {
+
     public static void bytt(int[] a, int b, int c){
 
         int mt = a[b];
@@ -8,7 +9,7 @@ public class Oppgave1 {
     }
     public static int maks(int[] a){
 
-        //if (a.length <0 ) { NoSuchElementException​("Error"); }
+        //if (a.length ==  ) { NoSuchElementException​("Error"); }
 
         for (int i = 0; i < a.length-1 ; i++){
             //if (i+1<a.length){
