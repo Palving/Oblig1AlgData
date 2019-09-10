@@ -8,7 +8,7 @@ public class Oppgave1 {
     }
     public static int maks(int[] a){
 
-        //if (a.length <0 ) {NoSuchElementException​("Error"); }
+        //if (a.length <0 ) { NoSuchElementException​("Error"); }
 
         for (int i = 0; i < a.length-1 ; i++){
             //if (i+1<a.length){
@@ -21,6 +21,11 @@ public class Oppgave1 {
         int storsteTall =a[a.length-1];
 
         return storsteTall;
+    }
+
+    public static void main (String[] args){
+        int[] a = {1,4,9,6,7,4,5,8};
+        System.out.println(maks(a));
     }
 
 
