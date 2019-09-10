@@ -21,7 +21,7 @@ public class Oppgave1 {
         int storsteTall =a[a.length-1];
 
         return storsteTall;
-    }
 
+    }
 
 }
