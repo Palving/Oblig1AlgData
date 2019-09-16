@@ -71,6 +71,46 @@ public class Oblig1 {
 
     }
 
+    //oppgave 4
+
+    public static void delsortering(int[] a) {
+        int antallOddetall = 0;
+        int antallPartall = 0;
+
+        // finne oddetall først
+        int teller=0;
+        for (int i = 0; i < a.length; i++) {
+            if (a[i] % 2 > 0) {
+                antallOddetall++;
+                bytt(a,i,teller);
+                teller++;
+
+            }
+        }
+
+
+
+        for (int i=0;i<antallOddetall;i++){
+            for (int x=0;x<antallOddetall;x++){
+                if (a[i]<a[x]){
+                    bytt(a, x,i);
+                }
+
+            }
+        }
+
+        for (int i=antallOddetall;i<a.length;i++) {
+            for (int x = antallOddetall; x < a.length; x++) {
+                if (a[i] < a[x]) {
+                    bytt(a, x, i);
+                }
+            }
+        }
+
+        System.out.print(Arrays.toString(a));
+    }
+
+
 
     // oppgave 5
     public static void byttChar (char[] a, int b, int c){
@@ -126,6 +166,71 @@ public class Oblig1 {
         }
     }
 
+
+// Opppgave 8
+
+    public static int[] indekssortering(int [] a){
+        int indekser[]=new int[a.length];
+
+        for (int i=0;i<a.length;i++){
+            indekser[i]=i;
+        }
+
+        int minsteVerdi=a[0];
+        int minsteIndeks=0;
+
+        for (int i=0;i<a.length-1;i++){
+            if (a[minsteIndeks] > a[indekser[i+1]]){
+                indekser[i]=indekser[i+1];
+                indekser[i+1]=minsteIndeks;
+            }
+            else{
+                minsteIndeks=indekser[i+1];
+            }
+        }
+
+        return indekser;
+
+
+
+    }
+
+
+    // Oppgave 10
+
+    public static boolean inneholdt(String a, String b){
+
+        StringBuilder asb=new StringBuilder(a);
+        StringBuilder bsb=new StringBuilder(b);
+
+        char bokstav='a';
+        boolean statuser[]=new boolean[asb.length()];
+
+        for (int i=0;i<asb.length();i++) {
+
+            bokstav = asb.charAt(i);
+
+            for (int j = 0; j < bsb.length(); j++) {
+
+                if (bokstav == (bsb.charAt(j))) {
+                    System.out.println("match funnet, sletter" + bsb.charAt(j));
+                    bsb.deleteCharAt(j);
+                    statuser[i] = true;
+                    j = bsb.length(); // hopp ut av loop hvis match funnet
+                } else {
+                    statuser[i] = false;
+
+                }
+            }
+        }
+
+        for (boolean s : statuser) {
+            if (!s){
+                return false;
+            }
+        }
+        return true;
+    }
 
 
 
