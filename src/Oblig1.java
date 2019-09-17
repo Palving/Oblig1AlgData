@@ -134,7 +134,7 @@ public class Oblig1 {
    // oppgave 4 redo
 
     public static void delsortering(int[] a) {
-
+/*
 // så lenge v delelig med 2 og h !delelig med 2 bytt v med h
 
         int v = 0;
@@ -179,7 +179,7 @@ public class Oblig1 {
                     bytt(a,x,i);
                 }
             }
-        }
+        }*/
     }
 
 
@@ -223,6 +223,7 @@ public class Oblig1 {
     //oppgave 6
 
     public static void rotasjon(char[] a, int k){
+
 
         if (k < 0){
             for (int i = 0; i < k; i++) {
@@ -295,28 +296,35 @@ public class Oblig1 {
 
 // Opppgave 8
 
-    public static int[] indekssortering(int [] a){
-        int indekser[]=new int[a.length];
+    public static int min(int[] a){
+        int minsteverdi = a[0];
+        int q = 0;
 
-        for (int i=0;i<a.length;i++){
-            indekser[i]=i;
-        }
+        for(int i = 0; i < a.length;i++){
+            if (a[i] < minsteverdi){
+                minsteverdi = a[i];
+                q= i;
 
-        int minsteVerdi=a[0];
-        int minsteIndeks=1;
-
-        for (int i=0;i<a.length-1;i++){
-            if (a[minsteIndeks] > a[indekser[i+1]]){
-                indekser[i]=indekser[i+1];
-                indekser[i+1]=minsteIndeks;
-            }
-            else{
-                minsteIndeks=indekser[i+1];
             }
         }
-
-        return indekser;
+        return q;
     }
+
+    // oppgave 8
+    public static int[] indekssortering(int[] a){
+
+        int[] indeks = new int[a.length];
+        int[] b = a;
+
+        for (int i = 0; i < a.length; i++){
+            indeks[i] = min(b);
+            b[indeks[i]] = 100000000;
+        }
+
+
+        return indeks;
+    }
+
 
     // oppgave 9
     public static int[] tredjeMin(int[] a){
@@ -324,16 +332,16 @@ public class Oblig1 {
         int n = a.length;
         if (n < 3){ throw new NoSuchElementException("Tabellen har for få verdier"); }
 
-        /*int[] treFørste ={a[0],a[1],a[2]} ;
-        int[] indeksTF = indekssortering(treFørste);*/
+        int[] treFørste ={a[0],a[1],a[2]} ;
+        int[] indeksTF = indekssortering(treFørste);
 
 
         // hjelpevariabler
-        /*int m = indeksTF[0];
+        int m = indeksTF[0];
         int nm = indeksTF[1];
-        int nnm = indeksTF[2];*/
+        int nnm = indeksTF[2];
 
-        int m = 0;
+        /*int m = 0;
         int nm = 1;
         int nnm = 2;
         if (a[1] < a[0]){
@@ -349,12 +357,17 @@ public class Oblig1 {
             nm = 2;
             nnm=1;
 
-        }
+        }*/
 
         //hjelpevariabler2
+        /*
         int minste = a[m];
         int nestminst = a[nm];
-        int tredjeminst = a[nnm];
+        int tredjeminst = a[nnm];*/
+
+        int minste = a[indeksTF[0]];
+        int nestminst = a[indeksTF[1]];
+        int tredjeminst = a[indeksTF[2]];
 
 
         for (int i = 3; i < n; i++)
