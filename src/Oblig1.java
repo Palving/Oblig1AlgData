@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 
 public class Oblig1 {
 
@@ -14,19 +15,40 @@ public class Oblig1 {
     // oppgave 1
     public static int maks(int[] a){
 
-        //if (a.length ==  ) { NoSuchElementException​("Error"); }
+        if (a.length == 0 ) {throw new NoSuchElementException​("Error"); }
 
         for (int i = 0; i < a.length-1 ; i++){
-            //if (i+1<a.length){
+
             if (a[i] > a[i+1]){
                 bytt(a, i, i+1);
             }
-            //}
+
         }
 
         int storsteTall =a[a.length-1];
 
         return storsteTall;
+    }
+
+    // oppgave 1
+    public static int ombyttninger(int[] a){
+
+        if (a.length == 0 ) {throw new NoSuchElementException​("Error"); }
+
+        int ombyttninger = 0;
+
+        for (int i = 0; i < a.length-1 ; i++){
+
+            if (a[i] > a[i+1]){
+                bytt(a, i, i+1);
+                ombyttninger++;
+            }
+
+        }
+
+
+
+        return ombyttninger;
     }
 
     // oppgave 2
@@ -194,6 +216,86 @@ public class Oblig1 {
 
 
     }
+
+
+    // oppgave 9
+    public static int[] tredjeMin(int[] a){
+
+        int n = a.length;
+        if (n < 3){ throw new NoSuchElementException("Tabellen har for få verdier"); }
+
+        /*int[] treFørste ={a[0],a[1],a[2]} ;
+        int[] indeksTF = indekssortering(treFørste);*/
+
+
+        // hjelpevariabler
+        /*int m = indeksTF[0];
+        int nm = indeksTF[1];
+        int nnm = indeksTF[2];*/
+
+        int m = 0;
+        int nm = 1;
+        int nnm = 2;
+        if (a[1] < a[0]){
+            m = 1;
+            nm = 0;
+        }
+        else if (a[2] < a[0]){
+            m= 2;
+            nnm=0;
+
+        }
+        else if(a[1] < a[2]){
+            nm = 2;
+            nnm=1;
+
+        }
+
+        //hjelpevariabler2
+        int minste = a[m];
+        int nestminst = a[nm];
+        int tredjeminst = a[nnm];
+
+
+        for (int i = 3; i < n; i++)
+        {
+            if (a[i] < tredjeminst)
+            {
+                if (a[i] < nestminst) {
+
+                    if (a[i] < minste) {
+                        nnm = nm;
+                        tredjeminst = nestminst;
+
+                        nm = m;
+                        nestminst = minste;     // ny nest minst
+
+                        m = i;
+                        minste = a[m];              // ny minste
+                    } else {
+                        nnm = nm;
+                        tredjeminst = nestminst;
+
+                        nm = i;
+                        nestminst = a[nm];         // ny nest minst
+                    }
+                }
+                else {
+                    nnm= i;
+                    tredjeminst = a[nnm];
+                }
+
+            }
+        } // for
+
+
+
+        return new int[] {m,nm,nnm};
+
+    }
+
+
+
 
 
     // Oppgave 10
