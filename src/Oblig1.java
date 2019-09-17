@@ -188,34 +188,37 @@ public class Oblig1 {
         }
     }
 
+    // oppgave 8
+    public static int min(int[] a){
+        int minsteverdi = a[0];
+        int q = 0;
+
+        for(int i = 0; i < a.length;i++){
+            if (a[i] < minsteverdi){
+                minsteverdi = a[i];
+                q= i;
+
+            }
+        }
+        return q;
+    }
 
 // Opppgave 8
 
     public static int[] indekssortering(int [] a){
-        int indekser[]=new int[a.length];
 
-        for (int i=0;i<a.length;i++){
-            indekser[i]=i;
+            int[] indeks = new int[a.length];
+            int[] b = a;
+
+            for (int i = 0; i < a.length; i++){
+                indeks[i] = min(b);
+                b[indeks[i]] = 100000000;
+            }
+
+
+            return indeks;
         }
 
-        int minsteVerdi=a[0];
-        int minsteIndeks=0;
-
-        for (int i=0;i<a.length-1;i++){
-            if (a[minsteIndeks] > a[indekser[i+1]]){
-                indekser[i]=indekser[i+1];
-                indekser[i+1]=minsteIndeks;
-            }
-            else{
-                minsteIndeks=indekser[i+1];
-            }
-        }
-
-        return indekser;
-
-
-
-    }
 
 
     // oppgave 9
