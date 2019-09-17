@@ -141,7 +141,7 @@ public class Oblig1 {
         int h = a.length - 1;
 
         while (v <= h) {
-            if (a[v] % 2 == 0 && a[h] % 2 > 0) // oddetall bytt mot partall
+            if ((a[v] % 2 == 0 || a[v]*-1 % 2 == 0) && (a[h] % 2 > 0 || a[h]*-1 % 2 > 0)) // oddetall bytt mot partall
             {
                 bytt(a, v, h);
 
@@ -149,13 +149,13 @@ public class Oblig1 {
             h--;
 
         }
-       else if (a[v] % 2 == 0) {
+       else if (a[v] % 2 == 0 || a[v]*-1 % 2 == 0) {
             h--;
         }
-       else if (a[h] % 2 > 0){
+       else if (a[h] % 2 > 0  ||  a[h]*-1 % 2 > 0){
            v++;
             }
-       else if (a[v] % 2 > 0 && a[h] % 2 ==0){
+       else if ((a[v] % 2 > 0 || a[v]*-1 % 2 > 0)  && (a[h] % 2 ==0 ||  a[h]*-1 % 2 > 0)){
            // verken
                 v++;
                 h--;
@@ -163,23 +163,10 @@ public class Oblig1 {
 
     }
 
-        for (int i=0;i<v;i++){
 
-            for (int x=0;x<v;x++){
-                if (a[i]<a[x]){
-                    bytt(a,x,i);
+Arrays.sort(a,0,v);
+        Arrays.sort(a,v,a.length);
 
-                }
-            }
-        }
-
-        for (int i=v;i<a.length;i++){
-            for (int x=v;x<a.length;x++){
-                if (a[i]<a[x]){
-                    bytt(a,x,i);
-                }
-            }
-        }
     }
 
 
@@ -192,6 +179,10 @@ public class Oblig1 {
 
     // oppgave 5
     public static void rotasjon(char[] a){
+
+        if (a.length==0){
+            return;
+        }
         char temp = a[a.length-1];
 
 
@@ -412,7 +403,7 @@ public class Oblig1 {
             for (int j = 0; j < bsb.length(); j++) {
 
                 if (bokstav == (bsb.charAt(j))) {
-                    bsb.deleteCharAt(j);
+                  bsb.deleteCharAt(j);
                     statuser[i] = true;
                     j = bsb.length(); // hopp ut av loop hvis match funnet
                 } else {
@@ -441,7 +432,7 @@ public class Oblig1 {
         //System.​out​.println(Arrays.​toString(​charArray));
         //delsortering(a);
         //System.out.println(a.length);
-int [] a={2,5,7,3,9,10,12,24,21};
+int [] a={2,5,7,3,9,10,-4,-2,-1,-24,-19,-20,12,24,21};
 delsortering(a);
 System.out.println(Arrays.toString(a));
        // System.out.print(flett("jro","oas","nfs"));
