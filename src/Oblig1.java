@@ -1,4 +1,6 @@
-//Studentnr: s331379 , s326302
+//Studentnr: Jon Rafoss - s331379
+// Magnus Palving Christiansen - s326302
+// Mats Groesvik - 331405
 
 
 import java.util.NoSuchElementException;
