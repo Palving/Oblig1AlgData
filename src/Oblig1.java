@@ -1,4 +1,6 @@
-import java.util.Arrays;
+//Studentnr: s331379 , s326302
+
+
 import java.util.NoSuchElementException;
 
 public class Oblig1 {
@@ -91,71 +93,35 @@ public class Oblig1 {
 
     }
 
-    //oppgave 4
 
-   /* public static void delsortering(int[] a) {
-        int antallOddetall = 0;
-
-
-        // finne oddetall først
-        int teller=0;
-        for (int i = 0; i < a.length; i++) {
-            if (a[i] % 2 > 0 || (a[i]*-1) % 2 > 0) {
-                antallOddetall++;
-
-                bytt(a,i,teller);
-                teller++;
-
-
-            }
-
-        }
-
-
-
-        for (int i=0;i<antallOddetall;i++){
-            for (int x=0;x<antallOddetall;x++){
-                if (a[i]<a[x]){
-                    bytt(a, x,i);
-                }
-
-            }
-        }
-
-        for (int i=antallOddetall;i<a.length;i++) {
-            for (int x = antallOddetall; x < a.length; x++) {
-                if (a[i] < a[x]) {
-                    bytt(a, x, i);
-                }
-            }
-        }
-    }
-*/
-   // oppgave 4 redo
+   // oppgave 4
 
     public static void delsortering(int[] a) {
-/*
+
 // så lenge v delelig med 2 og h !delelig med 2 bytt v med h
 
         int v = 0;
         int h = a.length - 1;
 
         while (v <= h) {
-            if (a[v] % 2 == 0 && a[h] % 2 > 0) // oddetall bytt mot partall
+            if ((a[v] % 2 == 0 || a[v]*-1 % 2 == 0) && (a[h] % 2 > 0 || a[h]*-1 % 2 > 0)) // oddetall bytt mot partall
             {
                 bytt(a, v, h);
 
-            v++;
-            h--;
-
-        }
-       else if (a[v] % 2 == 0) {
-            h--;
-        }
-       else if (a[h] % 2 > 0){
-           v++;
+                v++;
+                h--;
             }
-       else if (a[v] % 2 > 0 && a[h] % 2 ==0){
+
+            else if (a[v] % 2 == 0 || a[v]*-1 % 2 == 0) {
+                   h--;
+
+            }
+
+            else if (a[h] % 2 > 0  ||  a[h]*-1 % 2 > 0){
+                 v++;
+            }
+
+            else if ((a[v] % 2 > 0 || a[v]*-1 % 2 > 0)  && (a[h] % 2 ==0 ||  a[h]*-1 % 2 > 0)){
            // verken
                 v++;
                 h--;
@@ -179,7 +145,7 @@ public class Oblig1 {
                     bytt(a,x,i);
                 }
             }
-        }*/
+        }
     }
 
 
@@ -193,6 +159,10 @@ public class Oblig1 {
     // oppgave 5
     public static void rotasjon(char[] a){
         char temp = a[a.length-1];
+
+        if (a.length==0){
+            return;
+        }
 
 
         for (int i  = a.length-1; i >0; i--){
@@ -225,11 +195,13 @@ public class Oblig1 {
     public static void rotasjon(char[] a, int k){
 
 
+
         if (k < 0){
             for (int i = 0; i < k; i++) {
                 rotasjonBakover(a);
             }
         }
+
         else {
 
             for (int i = 0; i < k; i++) {
@@ -322,6 +294,7 @@ public class Oblig1 {
         }
 
 
+
         return indeks;
     }
 
@@ -341,29 +314,7 @@ public class Oblig1 {
         int nm = indeksTF[1];
         int nnm = indeksTF[2];
 
-        /*int m = 0;
-        int nm = 1;
-        int nnm = 2;
-        if (a[1] < a[0]){
-            m = 1;
-            nm = 0;
-        }
-        else if (a[2] < a[0]){
-            m= 2;
-            nnm=0;
 
-        }
-        else if(a[1] < a[2]){
-            nm = 2;
-            nnm=1;
-
-        }*/
-
-        //hjelpevariabler2
-        /*
-        int minste = a[m];
-        int nestminst = a[nm];
-        int tredjeminst = a[nnm];*/
 
         int minste = a[indeksTF[0]];
         int nestminst = a[indeksTF[1]];
@@ -446,21 +397,7 @@ public class Oblig1 {
 
 
 
-    public static void main (String[] args){
-       // int[] a = {6,10,9,4,1,3,8,5,2,7};
-        char[] charArray = { 'a', 'b', 'c', 'd', 'e', 'f','g','h','i','j' };
-        rotasjonBakover(charArray);
 
-        //System.​out​.println(Arrays.​toString(​charArray));
-        //delsortering(a);
-        //System.out.println(a.length);
-int [] a={2,5,7,3,9,10,12,24,21};
-delsortering(a);
-System.out.println(Arrays.toString(a));
-       // System.out.print(flett("jro","oas","nfs"));
-        System.out.print(flett("msøi","  ","agsk","trv"));
-            //
-    }
 
 
 }
