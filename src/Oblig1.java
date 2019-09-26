@@ -3,9 +3,55 @@
 // Mats Groesvik - 331405
 
 
+import java.util.Arrays;
 import java.util.NoSuchElementException;
 
 public class Oblig1 {
+
+    // Tabell-metoder
+
+    private static void kvikksortering0(int[] a, int v, int h)
+    {
+        if (v >= h) {
+            return;
+        }
+        int k = sParter0(a, v, h, (v + h)/2);
+        kvikksortering0(a, v, k - 1);
+        kvikksortering0(a, k + 1, h);
+    }
+
+
+    private static int sParter0(int[] a, int v, int h, int i)
+    {
+        bytt(a, i, h);
+        int pos = parter0(a, v, h - 1, a[h]);
+        bytt(a, pos, h);
+        return pos;
+    }
+
+    private static int parter0(int[] a, int v, int h, int skille)
+    {
+        while (true)
+        {
+            while (v <= h && a[v] < skille) v++;
+            while (v <= h && a[h] >= skille) h--;
+
+            if (v < h) bytt(a,v++,h--);
+            else {
+                return v;
+            }
+        }
+    }
+
+    public static void kvikksortering(int[] a, int fra, int til)
+    {
+        kvikksortering0(a, fra, til - 1);
+    }
+
+    public static void kvikksortering(int[] a)
+    {
+        kvikksortering0(a, 0, a.length - 1);
+    }
 
 
 
@@ -131,86 +177,54 @@ public class Oblig1 {
 
     }
 
-        for (int i=0;i<v;i++){
-
-            for (int x=0;x<v;x++){
-                if (a[i]<a[x]){
-                    bytt(a,x,i);
-
-                }
-            }
+        // quicksort
+        kvikksortering(a,0,v);
+        kvikksortering(a,v,a.length);
         }
 
-        for (int i=v;i<a.length;i++){
-            for (int x=v;x<a.length;x++){
-                if (a[i]<a[x]){
-                    bytt(a,x,i);
-                }
-            }
-        }
-    }
+
+
 
 
     // oppgave 5
+
+    public static void rotasjon(char[] a){
+
+        int n = a.length;
+        if (n < 2) {          // hvis arrayet er tomt eller har en verdi
+            return;
+        }
+
+
+        char[] b = Arrays.copyOfRange(a, n - 1, n);           // hjelpetabell
+        for (int i = n - 1; i >= 1; i--) a[i] = a[i - 1];     // forskyver elementene en plass til hÃ¸yre
+        System.arraycopy(b, 0, a, 0, 1);
+
+    }
+
+    // oppgave 6
     public static void byttChar (char[] a, int b, int c){
         char mt = a[b];
         a[b] = a[c];
         a[c] = mt;
     }
-
-    // oppgave 5
-    public static void rotasjon(char[] a){
-        char temp = a[a.length-1];
-
-        if (a.length==0){
-            return;
-        }
-
-
-        for (int i  = a.length-1; i >0; i--){
-            a[i] = a[i-1];
-        }
-
-        a[0] = temp;
-
-
-
-
-    }
-
     // oppgave 6
-    public static void rotasjonBakover(char[] a){
-        char temp = a[0];
 
-
-        for (int i  = 0; i < a.length-1; i++){
-            a[i] = a[i+1];
+    public static void rotasjon(char[] a, int k) {            // 2. versjon
+        int n = a.length;
+        if (n < 2) {
+            return;                                     // tomt eller en verdi
         }
 
-        a[a.length-1] = temp;
+        if ((k %= n) < 0){
+            k += n;                              // motsatt vei?
+        }
 
-
+        for (int i = 0, j = n - 1; i < j; byttChar(a, i++, j--) ); //
+        for (int i = 0, j = k - 1; i < j; byttChar(a, i++, j--)); //
+        for (int i = k, j = n - 1; i < j; byttChar(a, i++, j--)); //
     }
 
-    //oppgave 6
-
-    public static void rotasjon(char[] a, int k){
-
-
-
-        if (k < 0){
-            for (int i = 0; i < k; i++) {
-                rotasjonBakover(a);
-            }
-        }
-
-        else {
-
-            for (int i = 0; i < k; i++) {
-                rotasjon(a);
-            }
-        }
-    }
 
     //Oppgave 7a
     public static String flett(String s, String t) {
